@@ -5,9 +5,13 @@ Normalization is a database design technique used to organize data properly into
 The main goals of normalization are:
 
 -Reduce data redundancy (duplicate data)
+
 -Avoid data inconsistency
+
 -Prevent insertion, deletion, and update anomalies
+
 -Improve database structure
+
 -Maintain data integrity
 
 For our Cafe Management System, we identified the following main tables:
@@ -26,16 +30,21 @@ Order_ID |Customer_ID|	Customer_Name|Employee|	Items           |	Payment|
 ---------|-----------|---------------|--------|-----------------|--------|
 1001     |C01        |	Aarav        |Rahul   |	Cappuccino, Cake|	UPI    |
 1002     |C02	       |Priya          |Neha	  |Coffee, Sandwich |	Card   |
-Problem
+
 
 The Items column contains multiple values:
 Cappuccino, Cake
 
 This violates the idea that each field should contain one value.
+
 It also causes problems when we want to:
+
 -Search for one particular item
+
 -Change an item
+
 -Add another item
+
 -Count how many times an item was ordered
 
 Therefore, this is Unnormalized Form (UNF).
@@ -45,7 +54,9 @@ Therefore, this is Unnormalized Form (UNF).
 A table is in 1NF when:
 
 -Each column contains atomic/single values.
+
 -There are no repeating groups.
+
 -Each row can be uniquely identified.
 
 Before 1NF
@@ -81,8 +92,11 @@ So an order can contain multiple items without storing multiple items in one cel
 A table is in 2NF when:
 
 It is already in 1NF.
+
 It has no partial dependency.
+
 What is Partial Dependency?
+
 Partial dependency occurs when a non-key attribute depends on only part of a composite key.
 
 Consider an order-item table:
@@ -97,12 +111,17 @@ Suppose the combined key is:
 
 But:
 Item_ID → Item_Name
+
 Item_ID → Price
 
 Item_Name and Price depend only on Item_ID, not on the entire combination (Order_ID, Item_ID).
+
 Therefore, there is a partial dependency.
+
 Solution
+
 We separate the information.
+
 Menu_Items Table :
 
 Item_ID |	Item_Name    |	Category | Price |
@@ -117,19 +136,27 @@ Order_Item_ID |	Order_ID |	Item_ID	| Quantity |
 2	            |  1001	   |   204    |  	1      |
 
 Now menu information depends on Item_ID, while order-item information depends on the order-item record.
+
 Therefore, the partial dependency is removed and the database satisfies 2NF.
 
 5. Third Normal Form (3NF)
+   
 A table is in 3NF when:
+
 -It is already in 2NF.
+
 -There is no transitive dependency.
 
 What is Transitive Dependency?
+
 A transitive dependency occurs when:
+
 A → B → C
+
 In simple words, one non-key attribute depends on another non-key attribute.
 
 Example in our Cafe System
+
 Consider if we stored employee information like this:
 
 Emp_ID | Emp_Name |	Role_ID	| Role_Name |
@@ -140,6 +167,7 @@ Emp_ID | Emp_Name |	Role_ID	| Role_Name |
 We could have:
 
 Emp_ID → Role_ID
+
 Role_ID → Role_Name
 
 Therefore:
@@ -167,10 +195,13 @@ R01     |	Barista   |
 R02	    |  Server   |
 
 Now the transitive dependency is removed.
+
 How our actual Cafe database achieves 3NF
+
 Our final design separates information according to its own primary key:
 
 1.Customers
+
 Customer_ID → Customer_Name
               Customer_Mobile_No
 2.Employees
@@ -204,10 +235,15 @@ Therefore, the tables are organized so that non-key attributes depend on their r
 6. Boyce-Codd Normal Form (BCNF)
 
 BCNF is a stronger version of 3NF.
+
 A table is in BCNF when:
+
 For every functional dependency X → Y, X must be a super key.
+
 In simple language:
+
 Every determinant must be a candidate key.
+
 For our Cafe Management System, our main tables are already designed around their primary keys, such as:
 
 Customer_ID → Customer_Name
@@ -217,6 +253,7 @@ Order_ID → Order_Date
 Payment_ID → Payment_Date
 
 The determinants are the respective keys.
+
 Therefore, our design does not introduce an obvious BCNF violation in these basic relationships.
 
 7. Fourth Normal Form (4NF)
@@ -257,7 +294,9 @@ Item_ID	| Addon     |
 201     |	Extra Shot|
 
 This removes the multivalued dependency.
+
 For our current Cafe project
+
 We don't have independent multi-valued attributes like these in our six-table design, so 4NF does not require an additional decomposition.
 
 8. Normalization Applied to Our Cafe Management System
@@ -318,27 +357,40 @@ Status	      | Paid/Pending |
 9. Benefits of Normalization in Our Cafe System
 
 . Reduces Data Redundancy
+
 Customer information does not have to be repeated for every item in an order.
+
 For example, instead of repeatedly storing:
+
 Aarav | 9876543210
+
 for every item, we store it once in Customers.
 
 . Prevents Update Anomaly
+
 If a customer's mobile number changes, we update it in one place.
+
 We don't have to search through every order.
 
 . Prevents Insertion Anomaly
+
 We can add a new menu item even if nobody has ordered it yet.
+
 For example:
 206 | Masala Tea | Beverage | 80
+
 can be added directly to Menu_Items.
 
 . Prevents Deletion Anomaly
+
 Deleting an order should not accidentally delete the customer or menu item information.
+
 The information is stored separately.
 
 . Improves Data Integrity
+
 Primary keys and foreign keys make sure that relationships remain valid.
+
 For example:
 Orders.Customer_ID
         ↓
@@ -347,6 +399,7 @@ Customers.Customer_ID
 An order cannot refer to a customer that doesn't exist if the foreign-key constraint is enforced.
 
 6. Makes the Database Easier to Maintain
+
 Each table has a specific purpose:
 
 Customers     → customer information
@@ -357,6 +410,7 @@ Order_Items   → items inside orders
 Payments      → payment information
 
 This makes the system easier to understand and maintain.
+
 Normalization helped us create a properly structured Cafe Management System.
 
 Our final database consists of:
@@ -372,7 +426,9 @@ The relationships between these tables are maintained using primary keys and for
 By applying normalization, we:
 
 -Reduced duplicate data
+
 -Reduced data inconsistency
+
 -Avoided insertion anomalies
 -Avoided deletion anomalies
 -Avoided update anomalies
