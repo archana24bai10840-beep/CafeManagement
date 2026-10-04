@@ -59,7 +59,9 @@
 Relationships
 
 1. Places
+
 Customers — Places — Orders
+
 The Places relationship connects Customers with Orders.
 
 | Attribute   | Key         |
@@ -68,7 +70,9 @@ The Places relationship connects Customers with Orders.
 | Order_ID    | Foreign Key |
 
 2. Handles
+
 Employees — Handles — Orders
+
 The Handles relationship connects Employees with Orders.
 
 | Attribute | Key         |
@@ -77,7 +81,9 @@ The Handles relationship connects Employees with Orders.
 | Order_ID  | Foreign Key |
 
 3. Contains
+
 Orders — Contains — Order Items
+
 The Contains relationship connects Orders with Order Items.
 
 | Attribute     | Key         |
@@ -86,7 +92,9 @@ The Contains relationship connects Orders with Order Items.
 | Order_Item_ID | Foreign Key |
 
 4. Includes
+
 Menu Items — Includes — Order Items
+
 The Includes relationship connects Menu Items with Order Items.
 
 | Attribute     | Key         |
@@ -95,7 +103,9 @@ The Includes relationship connects Menu Items with Order Items.
 | Order_Item_ID | Foreign Key |
 
 5. Has
+
 Orders — Has — Payments
+
 The Has relationship connects Orders with Payments.
 
 | Attribute  | Key         |
