@@ -1,10 +1,5 @@
 -- Cafe Management System
-
-DROP DATABASE IF EXISTS Cafe_Management;
-
-CREATE DATABASE Cafe_Management;
-
-USE Cafe_Management;
+-- Database Schema
 
 
 -- 1. CUSTOMERS
@@ -89,8 +84,3 @@ CREATE TABLE Payments (
         FOREIGN KEY (order_id)
         REFERENCES Orders(order_id)
 );
-
-
--- CHECK TABLES
-
-SHOW TABLES;
