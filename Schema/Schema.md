@@ -69,6 +69,7 @@ Relationships
 | Customer_ID | Foreign Key |
 | Order_ID    | Foreign Key |
 
+
 2. Handles
 
  Employees — Handles — Orders
@@ -79,6 +80,7 @@ Relationships
 | --------- | ----------- |
 | Emp_ID    | Foreign Key |
 | Order_ID  | Foreign Key |
+
 
 3. Contains
 
@@ -91,6 +93,7 @@ Relationships
 | Order_ID      | Foreign Key |
 | Order_Item_ID | Foreign Key |
 
+
 4. Includes
 
  Menu Items — Includes — Order Items
@@ -101,6 +104,7 @@ Relationships
 | ------------- | ----------- |
 | Item_ID       | Foreign Key |
 | Order_Item_ID | Foreign Key |
+
 
 5. Has
 
