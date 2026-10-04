@@ -60,9 +60,9 @@ Relationships
 
 1. Places
 
-Customers — Places — Orders
+ Customers — Places — Orders
 
-The Places relationship connects Customers with Orders.
+ The Places relationship connects Customers with Orders.
 
 | Attribute   | Key         |
 | ----------- | ----------- |
@@ -71,9 +71,9 @@ The Places relationship connects Customers with Orders.
 
 2. Handles
 
-Employees — Handles — Orders
+ Employees — Handles — Orders
 
-The Handles relationship connects Employees with Orders.
+ The Handles relationship connects Employees with Orders.
 
 | Attribute | Key         |
 | --------- | ----------- |
@@ -82,9 +82,9 @@ The Handles relationship connects Employees with Orders.
 
 3. Contains
 
-Orders — Contains — Order Items
+ Orders — Contains — Order Items
 
-The Contains relationship connects Orders with Order Items.
+ The Contains relationship connects Orders with Order Items.
 
 | Attribute     | Key         |
 | ------------- | ----------- |
@@ -93,9 +93,9 @@ The Contains relationship connects Orders with Order Items.
 
 4. Includes
 
-Menu Items — Includes — Order Items
+ Menu Items — Includes — Order Items
 
-The Includes relationship connects Menu Items with Order Items.
+ The Includes relationship connects Menu Items with Order Items.
 
 | Attribute     | Key         |
 | ------------- | ----------- |
@@ -104,9 +104,9 @@ The Includes relationship connects Menu Items with Order Items.
 
 5. Has
 
-Orders — Has — Payments
+ Orders — Has — Payments
 
-The Has relationship connects Orders with Payments.
+ The Has relationship connects Orders with Payments.
 
 | Attribute  | Key         |
 | ---------- | ----------- |
