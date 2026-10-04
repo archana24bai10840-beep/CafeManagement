@@ -29,17 +29,14 @@ Order_ID |Customer_ID|	Customer_Name|Employee|	Items           |	Payment|
 Problem
 
 The Items column contains multiple values:
-
 Cappuccino, Cake
 
 This violates the idea that each field should contain one value.
-
 It also causes problems when we want to:
-
-Search for one particular item
-Change an item
-Add another item
-Count how many times an item was ordered
+-Search for one particular item
+-Change an item
+-Add another item
+-Count how many times an item was ordered
 
 Therefore, this is Unnormalized Form (UNF).
 
@@ -47,38 +44,37 @@ Therefore, this is Unnormalized Form (UNF).
 
 A table is in 1NF when:
 
-Each column contains atomic/single values.
-There are no repeating groups.
-Each row can be uniquely identified.
+-Each column contains atomic/single values.
+-There are no repeating groups.
+-Each row can be uniquely identified.
+
 Before 1NF
-Order_ID	Customer_Name	Items
-1001	Aarav	Cappuccino, Cake
+Order_ID |	Customer_Name |	Items           |
+---------|----------------|-----------------|
+1001     |	Aarav         |	Cappuccino, Cake|
 
 The Items column contains multiple values.
 
 After 1NF
-
 We separate the items:
-
-Order_ID	Customer_Name	Item
-1001	Aarav	Cappuccino
-1001	Aarav	Cake
+Order_ID | Customer_Name |	Item      |
+---------|---------------|------------|
+1001     |	Aarav        |	Cappuccino|
+---------|---------------|------------|
+1001	   |  Aarav        |	Cake      |
 
 Now each cell contains only one value.
-
 Therefore, the data satisfies 1NF.
 
 For our Cafe System
-
 The Order_Items table helps us represent individual items in an order.
-
 Order_ID → Item_ID → Quantity
-
 For example:
-
-Order_ID	Item_ID	Quantity
-1001	201	2
-1001	204	1
+Order_ID |	Item_ID |	Quantity|
+---------|----------|---------|
+1001	   |201	      |  2      |
+---------|----------|---------|
+1001	   |204       |	 1      |
 
 So an order can contain multiple items without storing multiple items in one cell.
 
@@ -89,66 +85,63 @@ A table is in 2NF when:
 It is already in 1NF.
 It has no partial dependency.
 What is Partial Dependency?
-
 Partial dependency occurs when a non-key attribute depends on only part of a composite key.
 
 Consider an order-item table:
 
-Order_ID	Item_ID	Item_Name	Price	Quantity
-1001	201	Cappuccino	120	2
-1001	204	Cake	200	1
+Order_ID | Item_ID | Item_Name |	Price |	Quantity |
+---------|---------|-----------|--------|----------|
+1001     |	201	   | Cappuccino|	120   |	  2      |
+---------|---------|-----------|--------|----------|
+1001	   |  204	   |  Cake     |	200   | 	1      |
 
 Suppose the combined key is:
-
 (Order_ID, Item_ID)
 
 But:
-
 Item_ID → Item_Name
 Item_ID → Price
 
 Item_Name and Price depend only on Item_ID, not on the entire combination (Order_ID, Item_ID).
-
 Therefore, there is a partial dependency.
-
 Solution
-
 We separate the information.
+Menu_Items Table :
 
-Menu_Items Table
-Item_ID	Item_Name	Category	Price
-201	Cappuccino	Beverage	120
-204	Chocolate Cake	Dessert	200
+Item_ID |	Item_Name    |	Category | Price |
+--------|--------------|-----------|-------|
+201     |	Cappuccino   |	Beverage |	120  |
+--------|--------------|-----------|-------|
+204	    |Chocolate Cake|	Dessert	 |  200  |
+
 Order_Items Table
-Order_Item_ID	Order_ID	Item_ID	Quantity
-1	1001	201	2
-2	1001	204	1
+Order_Item_ID |	Order_ID |	Item_ID	| Quantity |
+--------------|----------|----------|----------|
+1             |	 1001    |	 201    |  	2      |
+--------------|----------|----------|----------|
+2	            |  1001	   |   204    |  	1      |
 
 Now menu information depends on Item_ID, while order-item information depends on the order-item record.
-
 Therefore, the partial dependency is removed and the database satisfies 2NF.
 
 5. Third Normal Form (3NF)
-
 A table is in 3NF when:
+-It is already in 2NF.
+-There is no transitive dependency.
 
-It is already in 2NF.
-There is no transitive dependency.
 What is Transitive Dependency?
-
 A transitive dependency occurs when:
-
 A → B → C
-
 In simple words, one non-key attribute depends on another non-key attribute.
 
 Example in our Cafe System
-
 Consider if we stored employee information like this:
 
-Emp_ID	Emp_Name	Role_ID	Role_Name
-101	Rahul	R01	Barista
-102	Neha	R02	Server
+Emp_ID | Emp_Name |	Role_ID	| Role_Name |
+-------|----------|---------|-----------|
+101    |	Rahul   |	R01	    | Barista   |
+-------|----------|---------|-----------|
+102    | 	Neha	  | R02	    | Server
 
 We could have:
 
@@ -168,13 +161,18 @@ Solution
 We would separate the role information:
 
 Employees
-Emp_ID	Emp_Name	Role_ID
-101	Rahul	R01
-102	Neha	R02
+Emp_ID | Emp_Name |	Role_ID |
+-------|----------|---------|
+101    |	Rahul	  |  R01    |
+-------|----------|---------|
+102	   |  Neha	  |   R02   |
+
 Roles
-Role_ID	Role_Name
-R01	Barista
-R02	Server
+Role_ID |	Role_Name |
+--------|-----------|
+R01     |	Barista   |
+--------|-----------|
+R02	    |  Server   |
 
 Now the transitive dependency is removed.
 
