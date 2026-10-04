@@ -316,27 +316,28 @@ Payment_Method|	Cash/Card/UPI|
 Status	      | Paid/Pending |
 
 9. Benefits of Normalization in Our Cafe System
-1. Reduces Data Redundancy
+
+. Reduces Data Redundancy
 Customer information does not have to be repeated for every item in an order.
 For example, instead of repeatedly storing:
 Aarav | 9876543210
 for every item, we store it once in Customers.
 
-2. Prevents Update Anomaly
+. Prevents Update Anomaly
 If a customer's mobile number changes, we update it in one place.
 We don't have to search through every order.
 
-3. Prevents Insertion Anomaly
+. Prevents Insertion Anomaly
 We can add a new menu item even if nobody has ordered it yet.
 For example:
 206 | Masala Tea | Beverage | 80
 can be added directly to Menu_Items.
 
-4. Prevents Deletion Anomaly
+. Prevents Deletion Anomaly
 Deleting an order should not accidentally delete the customer or menu item information.
 The information is stored separately.
 
-5. Improves Data Integrity
+. Improves Data Integrity
 Primary keys and foreign keys make sure that relationships remain valid.
 For example:
 Orders.Customer_ID
