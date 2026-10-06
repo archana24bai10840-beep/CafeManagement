@@ -1,6 +1,0 @@
-Payment_ID,Order_ID,Payment_Date,Payment_Method,Status
-501,1001,2026-09-29 10:40:00,UPI,Paid
-502,1002,2026-09-29 11:30:00,Card,Paid
-503,1003,2026-09-29 12:15:00,Cash,Paid
-504,1004,2026-09-29 13:35:00,UPI,Paid
-505,1005,2026-09-29 14:20:00,Card,Pending
